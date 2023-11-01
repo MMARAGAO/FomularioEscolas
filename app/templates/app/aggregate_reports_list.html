@@ -1,0 +1,125 @@
+{% extends 'app/layout.html' %} {% block content %}
+<style>
+  /* Estilo para centralizar a tabela */
+  .table-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid #ddd;
+  }
+
+  th,
+  td {
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #ddd;
+  }
+
+  .pagination-container {
+    text-align: center;
+  }
+</style>
+
+<div class="container">
+  <div class="table-container">
+    <h1>Lista de Relatórios</h1>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>View Details</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        {% for report in reports %}
+        <tr>
+          <td>{{ report.report_date }}</td>
+          <td>
+            <a href="{% url 'aggregate_report' report.pk %}">View Details</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="pagination-container" id="pagination"></div>
+    <script>
+      // JavaScript para paginação
+      const tableBody = document.getElementById('table-body');
+      const paginationContainer = document.getElementById('pagination');
+      const reports = {% for report in reports %}'{{ report.report_date }}',{% endfor %}; // Lista de relatórios (substitua pela sua lógica)
+
+      const itemsPerPage = 15;
+      let currentPage = 1;
+
+      function displayData(data, page) {
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const displayedData = data.slice(start, end);
+
+        tableBody.innerHTML = '';
+
+        displayedData.forEach((item) => {
+          const row = document.createElement('tr');
+          const cell = document.createElement('td');
+          cell.textContent = item;
+          row.appendChild(cell);
+          tableBody.appendChild(row);
+        });
+      }
+
+      function updatePaginationButtons() {
+        paginationContainer.innerHTML = '';
+
+        const numPages = Math.ceil(reports.length / itemsPerPage);
+
+        for (let i = 1; i <= numPages; i++) {
+          const pageButton = document.createElement('button');
+          pageButton.textContent = i;
+          pageButton.addEventListener('click', () => {
+            currentPage = i;
+            displayData(reports, currentPage);
+            updatePaginationButtons();
+          });
+
+          if (i === currentPage) {
+            pageButton.classList.add('active');
+          }
+
+          paginationContainer.appendChild(pageButton);
+        }
+      }
+
+      displayData(reports, currentPage);
+      updatePaginationButtons();
+    </script>
+  </div>
+</div>
+{% endblock %}

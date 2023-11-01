@@ -1,0 +1,85 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<style>
+    .card-container {
+        padding: 20px;
+    }
+
+    .modern-card {
+        background: linear-gradient(135deg, #2a2e37 0%, #343a40 100%);
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        color: #f8f9fa;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+    }
+
+        .modern-card.answered {
+            background: linear-gradient(135deg, #2a8c37 0%, #40a040 100%);
+        }
+
+        .modern-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .modern-card .btn-primary {
+            background-color: #343a40; /* Same as navbar background color */
+            border-color: #343a40; /* Same as navbar background color */
+            color: #f8f9fa; /* Light text color */
+        }
+
+        .modern-card.answered .btn-primary {
+            background-color: #00cc66; /* New button background color when card is answered (green) */
+            border-color: #00cc66; /* New button border color when card is answered (green) */
+        }
+
+        .modern-card .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .modern-card .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .modern-card .card-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+    .result-btn {
+        margin-top: 10px;
+    }
+</style>
+
+<div class="container card-container">
+    <div class="row">
+        {% for topic in all_topics %}
+        <div class="col-md-4 mb-4">
+            <div class="card modern-card {% if topic.id in answered_topics %}answered{% endif %}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ topic.name }}</h5>
+                    <p class="card-text">{{ topic.description|truncatechars:100 }}</p>
+                    <a href="{% url 'questionnaire' %}?topic_id={{ topic.id }}" class="btn btn-primary">Iniciar Avaliação</a>
+                    {% for risk_assessment in answered_risk_assessments %}
+                    {% if risk_assessment.risk_topic_id == topic.id %}
+                    <div class="mt-2">
+                        <a href="{% url 'risk_assessment' risk_assessment_id=risk_assessment.id %}" class="btn btn-secondary result-btn">Ver Resultados: {{ risk_assessment.assesment_date_taken|date:"d M, Y" }}</a>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+    </div>
+</div>
+
+{% endblock %}

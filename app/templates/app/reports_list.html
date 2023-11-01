@@ -1,0 +1,14 @@
+{% extends 'app/layout.html' %}
+
+{% block content %}
+<h1>Meus Relatórios</h1>
+<ul>
+    {% for assessment in assessments %}
+    <li>
+        <a href="{% url 'report_detail' assessment.id %}">
+            Relatório de {{ assessment.assesment_date_taken }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

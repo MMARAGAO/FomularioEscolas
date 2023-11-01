@@ -1,0 +1,95 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{% load static %}
+
+<!-- css -->
+<link id = "css"
+ rel="stylesheet" href="{% static 'app/assetsindex/css/stylepage.css' %}">
+
+<div class="containerpage">
+    <div class="mb-4">
+        <h1 class="display-4">Relatório Final</h1>
+        <p class="lead"><strong>Date:</strong> {{ report.report_date }}</p>
+        <p class="lead"><strong>Total de pontos obtidos:</strong> {{ report.total_score }}</p>
+    </div>
+
+    <div class="mb-5">
+        <h2>Avaliação Geral de Riscos</h2>
+        {% for assessment in report.assessments.all %}
+        <div class="card mb-3">
+            <div class="card-header">
+                <h3 class="card-title">Tópico: {{ assessment.risk_topic.name }}</h3>
+            </div>
+            <div class="card-body">
+                <p class="card-text"><strong>Data:</strong> {{ assessment.assesment_date_taken }}</p>
+                <p class="card-text"><strong>Total de pontos:</strong> {{ assessment.total_score }}</p>
+
+                {% if assessment.score_based_recommendations.exists %}
+                <div class="mb-3">
+                    <h4>Recomendações Gerais Baseado na Análise de Teste</h4>
+                    <ul class="list-group list-group-flush">
+                        {% for recommendation in assessment.score_based_recommendations %}
+                        <li class="list-group-item">{{ recommendation.text }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% if assessment.response_based_recommendations.exists %}
+                <div>
+                    <h4>Recomendações Específicas</h4>
+                    <ul class="list-group">
+                        {% for recommendation in assessment.response_based_recommendations %}
+                        <li class="list-group-item">{{ recommendation.text }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+
+
+        
+
+        {% endfor %}
+    </div>
+    
+    <!-- botao que oculta o header -->
+
+    <button id="buttontab" type="button" class="btn btn-primary" onclick="retiraheader()">Gerar PDF</button>
+
+    <script>
+        function retiraheader() {
+            // troca a class do header para \
+            document.getElementById("header").className = "header2";
+            // coloca display none no header
+            document.getElementById("header").style.display = "none";
+            // tira css da pagina
+            document.getElementById("css").href = "";
+            // retira o botao
+            document.getElementById("buttontab").style.display = "none";
+            // tira print
+            window.print();
+            // volta o header
+            document.getElementById("header").style.display = "block";
+            // troca a class do header para a original
+            document.getElementById("header").className = "fixed-top d-flex align-items-center header-transparent";
+            // volta o css
+            document.getElementById("css").href = "{% static 'app/assetsindex/css/stylepage.css' %}";
+            // volta o botao
+            document.getElementById("buttontab").style.display = "block";
+
+        }
+
+    </script>
+
+
+
+    
+
+
+
+</div>
+{% endblock %}

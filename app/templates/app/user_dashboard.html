@@ -1,0 +1,65 @@
+{% extends "app/layout.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    .card {
+        background-color: #343a40;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+        color: #f8f9fa;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        color: #f8f9fa;
+    }
+
+    th, td {
+        padding: 8px;
+        border-bottom: 1px solid #666;
+    }
+
+    th {
+        background-color: #212529;
+        font-weight: bold;
+    }
+
+    tr:hover {
+        background-color: #444;
+    }
+</style>
+
+<div class="card">
+    <h2>User Responses</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Date of Response</th>
+                <th>Question</th>
+                <th>Response</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for response in user_responses %}
+            <tr>
+                <td>{{ response.user.username }}</td>
+                <td>{{ response.response_date }}</td>
+                <td>{{ response.risk_factor.question }}</td>
+                <td>{{ response.response.text }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

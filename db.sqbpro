@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Lucas Morais/source/repos/FomularioEscolas/db.sqlite3" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="4025"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,18:mainapp_recommendation"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">INSERT INTO &quot;app_recommendation&quot; (&quot;id&quot;,&quot;min_score&quot;,&quot;max_score&quot;,&quot;text&quot;,&quot;risk_topic_id&quot;) VALUES (3,0,10,'&lt;p&gt;&lt;strong&gt;Ações recomendadas:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+    &lt;li&gt;&lt;strong&gt;Instale um sistema de reconhecimento facial ou biometria:&lt;/strong&gt; para reforçar o controle de acesso e evitar entradas não autorizadas.&lt;/li&gt;
+
+    &lt;li&gt;&lt;strong&gt;Desenvolva uma aplicação ou portal online:&lt;/strong&gt; onde alunos e funcionários possam reportar, em tempo real, quaisquer preocupações relacionadas à segurança.&lt;/li&gt;
+
+    &lt;li&gt;&lt;strong&gt;Realize auditorias mensais:&lt;/strong&gt; dos dados armazenados para garantir que todas as informações pessoais estejam protegidas e em conformidade com as leis de proteção de dados.&lt;/li&gt;
+
+    &lt;li&gt;&lt;strong&gt;Estabeleça parcerias com empresas especializadas:&lt;/strong&gt; em segurança cibernética para realizar testes de penetração e avaliações de vulnerabilidade em sistemas escolares.&lt;/li&gt;
+
+    &lt;li&gt;&lt;strong&gt;Organize simulações semestrais:&lt;/strong&gt; para treinar funcionários e alunos em procedimentos de evacuação ou lockdown em casos de emergência detectados por sistemas tecnológicos.&lt;/li&gt;
+
+    &lt;li&gt;&lt;strong&gt;Desenvolva e implemente uma política de resposta a incidentes:&lt;/strong&gt; para abordar rapidamente quaisquer violações de segurança detectadas por sistemas de vigilância.&lt;/li&gt;
+&lt;/ol&gt;',7),
+ (4,11,20,'&lt;p&gt;&lt;strong&gt;Ações recomendadas:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+    &lt;li&gt;Avalie e considere a instalação de sistemas de vigilância em áreas onde ainda não existam, como estacionamentos e campos esportivos.&lt;/li&gt;
+
+    &lt;li&gt;Inicie um programa de formação para funcionários e alunos focado em protocolos de segurança cibernética e boas práticas de proteção de dados.&lt;/li&gt;
+
+    &lt;li&gt;Instale alertas automáticos no sistema de controle de acesso para notificar a equipe de segurança sobre tentativas de acesso não autorizado.&lt;/li&gt;
+
+    &lt;li&gt;Comece a utilizar uma plataforma de gerenciamento de incidentes para facilitar o registro e acompanhamento de questões de segurança.&lt;/li&gt;
+&lt;/ol&gt;',7),
+ (5,21,30,'&lt;p&gt;&lt;strong&gt;Ações recomendadas:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+    &lt;li&gt;&lt;strong&gt;Reforço na comunicação:&lt;/strong&gt; Estabeleça uma comunicação mais efetiva sobre os protocolos de segurança, talvez através de boletins mensais ou informativos. Certifique-se de que todos os funcionários e alunos estejam cientes das medidas de segurança em vigor.&lt;/li&gt;
+
+    &lt;li&gt;&lt;strong&gt;Atualização de Sistemas:&lt;/strong&gt; Considere a possibilidade de atualizar os sistemas de tecnologia existentes, mas que talvez não sejam da última geração. A adoção de tecnologias mais recentes pode trazer recursos adicionais e melhor eficiência.&lt;/li&gt;
+
+    &lt;li&gt;&lt;strong&gt;Treinamentos Regulares:&lt;/strong&gt; Inicie sessões de treinamento para a equipe sobre a operação e manutenção adequadas dos sistemas tecnológicos, especialmente aqueles dedicados à segurança.&lt;/li&gt;
+
+    &lt;li&gt;&lt;strong&gt;Avaliação Externa:&lt;/strong&gt; Contrate uma empresa terceirizada para avaliar a eficácia dos sistemas de segurança atuais. Eles podem identificar pontos fracos que foram inicialmente negligenciados.&lt;/li&gt;
+
+    &lt;li&gt;&lt;strong&gt;Plano de Contingência:&lt;/strong&gt; Desenvolva um plano de contingência para falhas tecnológicas. Isso pode incluir situações como falhas de energia, falhas de sistemas de controle de acesso ou falhas em câmeras de vigilância.&lt;/li&gt;
+
+    &lt;li&gt;&lt;strong&gt;Feedback da Comunidade:&lt;/strong&gt; Crie um canal onde alunos, professores e funcionários possam oferecer feedback sobre os sistemas tecnológicos em uso, especialmente no que diz respeito à segurança. Isso pode ajudar a identificar áreas de melhoria.&lt;/li&gt;
+&lt;/ol&gt;',7),
+ (6,31,35,'&lt;p&gt;Ações recomendadas:&lt;/p&gt;
+
+&lt;ol&gt;
+    &lt;li&gt;Mantenha backups regulares dos sistemas de vigilância para garantir a integridade dos registros.&lt;/li&gt;
+    &lt;li&gt;Realize verificações periódicas dos sistemas de controle de acesso para garantir seu funcionamento correto.&lt;/li&gt;
+    &lt;li&gt;Organize encontros trimestrais com a equipe de TI para discutir atualizações de software e hardware relacionados à segurança.&lt;/li&gt;
+&lt;/ol&gt;',7),
+ (7,0,41,'&lt;h2&gt;Risco Alto&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Protocolo para visitantes: Estabeleça protocolos claros para o controle e monitoramento de visitantes, garantindo que eles tenham acesso apenas a áreas autorizadas.&lt;/li&gt;
+        &lt;li&gt;Plano de segurança escrito: Elabore um plano de segurança abrangente que contemple tanto ameaças internas quanto externas. Este plano deve ser revisado e atualizado regularmente.&lt;/li&gt;
+        &lt;li&gt;Treinamento de protocolos: Introduza treinamentos regulares para estudantes e funcionários, garantindo que todos estejam cientes e em conformidade com os protocolos de segurança.&lt;/li&gt;
+        &lt;li&gt;Sistema de relatos: Implemente mecanismos para que estudantes e funcionários possam reportar preocupações ou incidentes de segurança de forma anônima e segura.&lt;/li&gt;
+        &lt;li&gt;Procedimentos de emergência: Estabeleça e comunique claramente os procedimentos a seguir em situações de emergência, incluindo planos de evacuação, lockdown e resposta a incêndios.&lt;/li&gt;
+    &lt;/ul&gt;',6),
+ (8,42,70,'&lt;ul&gt;
+        &lt;li&gt;Revisão do plano de segurança: Garanta que o plano de segurança existente seja revisado e testado regularmente, envolvendo tanto funcionários quanto alunos.&lt;/li&gt;
+        &lt;li&gt;Treinamento contínuo: Mantenha treinamentos semestrais ou anuais sobre protocolos de segurança para garantir que novos membros da comunidade escolar sejam instruídos e que os membros existentes recebam reciclagem.&lt;/li&gt;
+        &lt;li&gt;Mecanismos de feedback: Crie sistemas de feedback para alunos e funcionários compartilharem suas preocupações ou sugestões sobre os procedimentos de segurança.&lt;/li&gt;
+        &lt;li&gt;Exercícios práticos: Realize simulações e exercícios regulares para testar o plano de segurança e familiarizar a comunidade escolar com os procedimentos de emergência.&lt;/li&gt;
+    &lt;/ul&gt;',6),
+ (9,72,100,'&lt;h2&gt;Risco Baixo&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Aprimoramento contínuo: Mesmo que a escola tenha uma alta pontuação, sempre há espaço para melhorias. Considere implementar tecnologias avançadas ou práticas recomendadas de outras instituições líderes.&lt;/li&gt;
+        &lt;li&gt;Feedback da comunidade: Incentive o feedback regular dos alunos, funcionários e pais sobre os procedimentos de segurança para garantir que as necessidades da comunidade sejam atendidas.&lt;/li&gt;
+        &lt;li&gt;Participação ativa dos alunos: Estabeleça programas ou comitês de segurança liderados por alunos para incentivar uma cultura de segurança de baixo para cima.&lt;/li&gt;
+        &lt;li&gt;Revisões de protocolo: Mesmo com bons procedimentos em vigor, realize revisões regulares para garantir que os protocolos estejam alinhados com as necessidades atuais e emergentes.&lt;/li&gt;
+    &lt;/ul&gt;',6),
+ (10,0,30,'&lt;h2&gt;Risco Alto&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Fornecer treinamento de segurança relevante para os funcionários, garantindo que estejam preparados para lidar com ameaças potenciais.&lt;/li&gt;
+        &lt;li&gt;Realizar verificações rigorosas de antecedentes em todos os novos funcionários antes da contratação, para garantir uma equipe segura e confiável.&lt;/li&gt;
+        &lt;li&gt;Implementar verificações regulares em funcionários atuais para manter a consciência de quaisquer registros criminais recentes.&lt;/li&gt;
+        &lt;li&gt;Emitir crachás de identificação tanto para a equipe quanto para os alunos para aumentar a segurança e controlar o acesso.&lt;/li&gt;
+        &lt;li&gt;Assegurar que a equipe esteja ciente da localização e operação do equipamento de segurança, como extintores de incêndio e alarmes de emergência.&lt;/li&gt;
+    &lt;/ul&gt;',5),
+ (11,31,45,'&lt;h2&gt;Risco Moderado&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Oferecer treinamento aos funcionários sobre procedimentos de emergência, incluindo evacuação, primeiros socorros e prevenção de incêndios.&lt;/li&gt;
+        &lt;li&gt;Designar e treinar funcionários específicos para atuarem como primeiros socorros em caso de acidentes ou emergências médicas.&lt;/li&gt;
+        &lt;li&gt;Realizar treinamentos regulares de primeiros socorros e RCP para toda a equipe da escola, garantindo que possam responder efetivamente em emergências.&lt;/li&gt;
+        &lt;li&gt;Treinar a equipe da escola para reconhecer e abordar situações de bullying, assédio e comportamento violento entre os alunos.&lt;/li&gt;
+        &lt;li&gt;Garantir que a equipe esteja capacitada a identificar sinais de abuso ou negligência e relatá-los às autoridades competentes.&lt;/li&gt;
+    &lt;/ul&gt;',5),
+ (12,46,60,'&lt;h2&gt;Risco Baixo&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Implementar estratégias de reforço positivo para incentivar comportamentos respeitosos e cooperativos entre alunos e equipe.&lt;/li&gt;
+        &lt;li&gt;Envolver pais e membros da comunidade local em atividades escolares para construir relacionamentos positivos e confiança mútua.&lt;/li&gt;
+        &lt;li&gt;Treinar estudantes como mediadores entre colegas para ajudar a resolver conflitos de maneira construtiva.&lt;/li&gt;
+        &lt;li&gt;Promover a comunicação aberta, mantendo uma política de portas abertas para que alunos, pais e equipe possam expressar preocupações.&lt;/li&gt;
+        &lt;li&gt;Incorporar a educação de caráter no currículo para promover valores como empatia, respeito e responsabilidade.&lt;/li&gt;
+    &lt;/ul&gt;',5),
+ (13,0,0,'',0);</sql><current_tab id="0"/></tab_sql></sqlb_project>

@@ -1,0 +1,16 @@
+{% extends 'app/layout.html' %}
+
+{% block content %}
+<h1>Relatório: {{ assessment.assesment_date_taken }}</h1>
+<h2>Tópico de Risco: {{ assessment.risk_topic.name }}</h2>
+<h2>Pontuação Total: {{ assessment.total_score }}</h2>
+
+<h3>Recomendações:</h3>
+<ul>
+    {% for recommendation in recommendations %}
+    <li>{{ recommendation.text }}</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'reports_list' %}">Voltar para a lista de relatórios</a>
+{% endblock %}

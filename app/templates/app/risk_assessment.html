@@ -1,0 +1,91 @@
+{% extends "app/layout.html" %}
+
+
+{% block additional_styles %}
+<style>
+    .chart-container {
+        width: 50%; /* Adjust as needed */
+        height: 300px; /* Adjust as needed */
+        margin: 0 auto; /* Centering the chart */
+    }
+
+        .chart-container canvas {
+            width: 100%;
+            height: 100%;
+        }
+</style>
+{% endblock %}
+
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Risk Assessment Results</h2>
+
+    {% for assessment_data in assessments_data %}
+    <div class="card mt-4">
+        <div class="card-body">
+            <h3 class="mb-4">Date: {{ assessment_data.assessment_date|date:"Y-m-d H:i" }}</h3>
+            <h4 class="card-title">Total Score: <span class="text-primary">{{ assessment_data.total_score }}</span></h4>
+
+            <!-- Chart for each assessment -->
+            <div class="chart-container">
+                <canvas class="scorePieChart"
+                        data-total-score="{{ assessment_data.total_score }}"
+                        data-max-score="{{ assessment_data.max_score }}"></canvas>
+            </div>
+
+            <h5>Recommendations:</h5>
+            <ul class="list-group mt-3">
+                {% for recommendation in assessment_data.recommendations %}
+                <li class="list-group-item">{{ recommendation.text|safe }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="mt-4">
+        <a class="btn btn-primary" href="{% url 'topics_page' %}">Back to Topics</a>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var allCharts = document.querySelectorAll('.scorePieChart');
+
+        allCharts.forEach(function (chartElem, index) {
+            var ctx = chartElem.getContext('2d');
+
+            var total_score = parseInt(chartElem.getAttribute('data-total-score'));
+            var max_score = parseInt(chartElem.getAttribute('data-max-score'));
+
+            var data = {
+                labels: ['Total Score Achieved', 'Score Not Achieved'],
+                datasets: [{
+                    data: [total_score, max_score - total_score],
+                    backgroundColor: ['#FF6384', '#E7E9ED'],
+                }]
+            };
+
+            var options = {
+                responsive: true,
+                legend: {
+                    position: 'top',
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            };
+
+            var myPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: data,
+                options: options
+            });
+        });
+    });
+</script>
+
+{% endblock %}

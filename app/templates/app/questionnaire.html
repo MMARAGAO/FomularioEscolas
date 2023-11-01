@@ -1,0 +1,115 @@
+{% extends "app/layout.html" %}
+{% block additional_styles %}
+<style>
+    .btn-group {
+        display: flex;
+        justify-content: space-between; /* creates space between the buttons */
+        margin-top: 10px; /* some space above the buttons */
+    }
+
+        .btn-group button {
+            background-color: #F0F8FF; /* Change to your desired color */
+            flex: 1; /* makes buttons take equal width */
+            margin: 0 5px; /* some space around each button */
+        }
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h3>Questionnaire for {{ topic.name }}</h3>
+
+    <div class="progress mt-3 mb-4">
+        <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+
+    <form method="post" id="questionnaireForm">
+        {% csrf_token %}
+        {% for question in questions %}
+        <fieldset class="question-fieldset" style="display: none;">
+            <legend>{{ question.question }}</legend>
+            {% for response in question.responses.all %}
+            <input type="radio" name="response_{{ question.id }}" value="{{ response.id }}" id="response_{{ response.id }}">
+            <label for="response_{{ response.id }}">{{ response.text }}</label><br>
+            {% endfor %}
+
+            <div class="btn-group">
+                <button type="button" class="back-btn" style="display: none;">Back</button>
+                <button type="button" class="next-btn">Next</button>
+            </div>
+        </fieldset>
+        {% endfor %}
+
+        <div class="btn-group">
+            <button type="submit" id="submitForm" style="display: none;">Submit</button>
+        </div>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const fieldsets = document.querySelectorAll('.question-fieldset');
+                const progressBar = document.getElementById('progressBar');
+                let currentFieldsetIndex = 0;
+
+                function updateProgressBar() {
+                    const progress = ((currentFieldsetIndex + 1) / fieldsets.length) * 100;
+                    progressBar.style.width = `${progress}%`;
+                }
+
+                function isOptionSelected() {
+                    return fieldsets[currentFieldsetIndex].querySelector('input[type="radio"]:checked') !== null;
+                }
+
+                function updateFieldsetsVisibility() {
+                    fieldsets.forEach((fieldset, index) => {
+                        if (index === currentFieldsetIndex) {
+                            fieldset.style.display = 'block';
+                            if (index === 0) {
+                                fieldset.querySelector('.back-btn').style.display = 'none';
+                            } else {
+                                fieldset.querySelector('.back-btn').style.display = 'block';
+                            }
+                            if (index === fieldsets.length - 1) {
+                                fieldset.querySelector('.next-btn').style.display = 'none';
+                                document.getElementById('submitForm').style.display = 'block';
+                            } else {
+                                fieldset.querySelector('.next-btn').style.display = 'block';
+                            }
+                        } else {
+                            fieldset.style.display = 'none';
+                        }
+                    });
+                }
+
+
+                document.querySelectorAll('.next-btn').forEach((btn, index) => {
+                    btn.addEventListener('click', function () {
+                        if (isOptionSelected()) {
+                            if (currentFieldsetIndex < fieldsets.length - 1) {
+                                currentFieldsetIndex++;
+                            }
+                            updateFieldsetsVisibility();
+                            updateProgressBar();
+                        } else {
+                            alert('Please select an option before proceeding.');
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.back-btn').forEach((btn, index) => {
+                    btn.addEventListener('click', function () {
+                        if (currentFieldsetIndex > 0) {
+                            currentFieldsetIndex--;
+                            updateFieldsetsVisibility();
+                            updateProgressBar();
+                        }
+                    });
+                });
+
+                // Initialization
+                updateFieldsetsVisibility();
+                updateProgressBar();
+            });
+
+        </script>
+
+        {% endblock %}
