@@ -1,241 +1,189 @@
 {% extends 'app/layout.html' %} {% block content %}
 
-<style>
-  /* Adicione estilos CSS personalizados aqui, se necessário */
-  .card {
-    /* posicionar no meio da pagina */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70%;
 
-    border-radius: 30px;
-    border: none;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    background-color: #fff;
-    /* bordas arredondadas */
-  }
-  /* botões de avançar e voltar */
-  .buttonicon {
-    background: white;
-    color: #0056b3;
-    border: none;
-    /* circulo */
-    border-radius: 50%;
-    /* fazer sombra mais forte e maior (aumentei o valor para 10px de difusão) */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    /* tamanho */
-    width: 50px;
-    height: 50px;
-  }
-  .buttonicon:hover {
-    color: #0056b3;
-  }
-  /* botão de enviar */
-  .submit {
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 30px;
-    padding: 10px 20px;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    font-size: 1.2rem;
-    margin: 0 10px;
-  }
-  .submit:hover {
-    background-color: #0056b3;
-  }
-  /* barra de progresso */
-  .progress {
-    height: 20px;
-    background-color: #e9ecef;
-    border-radius: 30px;
-    margin-bottom: 20px;
-  }
-  .progress-bar {
-    background-color: #007bff;
-    border-radius: 30px;
-  }
-  /* opções de resposta */
-  .response-options {
+<style>
+  .container-q {
     display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-  }
-  .response-option {
-    display: flex;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
+    /* posicionar para baixo do header */
+    margin-top: 100px;
+
+
   }
-  .response-option input {
-    margin-right: 10px;
+    .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #2a2c39e6; /* Change to your desired background color */
+    text-align: center;
+    padding: 10px 0;
   }
-  .buttonsq2 {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    padding-left: 50px;
-    padding-right: 50px;
+  
+
+
+  /* fazer card com about */
+  .about {
+
+    background: #fff;
+    padding: 60px 0 30px 0;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    margin-bottom: 30px;
+    width: 80%;
+    height: 100%;
+    padding: 20px;
+    /* arredondar bordas */
+    border-radius: 30px;
   }
-  .question-label {
-    font-size: 1.5rem;
+
+  /* textos */
+  .about h1 {
+    font-size: 30px;
     font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
   }
-  .question {
+
+  .question-label{
+    font-size: 20px;
+    font-weight: bold;
     margin-bottom: 20px;
   }
   /* alternativas */
-  .response-option label {
-    font-size: 1.2rem;
+  .response-option {
+    margin-bottom: 10px;
+    /* fonte */
+    font-size: 18px;
+
   }
-  /* check box */
-  .response-option input[type="checkbox"] {
+
+  .buttonsq2 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+
+  .buttonicon {
+    background-color: #ffffffe6;
+    border: none;
+    color: rgb(61, 158, 238);
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    /* fazer card */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .submit {
+    background-color: rgb(61, 158, 238);
+    border: none;
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    /* fonte bold */
+    font-weight: bold;
+
+    /* fazer card */
+    
+  }
+  /* radios */
+  input[type="radio"] {
+    margin-right: 10px;
+    /* tamanho */
     width: 20px;
     height: 20px;
+    /* cor */
+    background-color: #2a2c39e6;
+    /* arredondar */
+    border-radius: 50%;
+    /* tirar borda */
+    border: none;
+    /* cursor */
+    cursor: pointer;
+
+
+
   }
-  .response-option input[type="checkbox"]:checked {
-    background-color: #007bff;
+
+  /* quando selecionado */
+  input[type="radio"]:checked {
+    background-color: #2a2c39e6;
+    border: 5px solid #2a2c39e6;
   }
-  .response-option input[type="checkbox"]:hover {
-    background-color: #0056b3;
+
+  /* quando passa o mouse */
+  input[type="radio"]:hover {
+    background-color: #2a2c39e6;
+    border: 5px solid #2a2c39e6;
   }
-  .response-option input[type="checkbox"]:focus {
-    outline: none;
-  }
-  .response-option input[type="checkbox"]:checked:after {
-    content: "\f00c";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 1.2rem;
-    color: white;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    line-height: 20px;
-  }
-  /* radio button */
-  .response-option input[type="radio"] {
-    width: 20px;
-    height: 20px;
-  }
-  /* espaço entre o titulo questionario */
-  .card h1 {
-    margin-bottom: 50px;
-    /* posicionar no meio */
-    text-align: center;
-  }
-  /* espaço da barra de % */
+
+  /* progress bar */
   .progress {
-    margin-bottom: 50px;
-    height: 30px;
-    /* fazer somrbra */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    height: 20px;
+    background-color: rgba(221, 221, 221, 0.902);
+    border-radius: 50px;
+    margin-bottom: 20px;
+    /* cord da barra */
+    color: rgb(61, 158, 238);
   }
-  /* espaço da pergunta */
-  .question-label {
-    margin-bottom: 50px;
-  }
-  .response-options {
-    margin-bottom: 50px;
-  }
-  /* personalize a porcentagem */
+
   .progress-bar {
-    font-size: 1.2rem;
+    height: 100%;
+    background-color: rgb(61, 158, 238);
+    border-radius: 50px;
+    /* texto */
+    font-size: 15px;
     font-weight: bold;
     text-align: center;
-    line-height: 20px;
+    /* cor do texto */
+    color: #ffffffe6;
   }
-  /* footer no final da pagina */
-  .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #2a2c39e6;
-  }
-  /* reponsividade da pagina */
-  @media (max-width: 768px) {
-    .card {
-      width: 90%;
-    }
-    /* botao de enviar */
-    .submit {
-      font-size: 1rem;
-    }
-    /* barra de progresso */
-    .progress {
-      height: 10px;
-    }
-    /* porcentagem da barra */
-    .progress-bar {
-      font-size: 0.8rem;
-    }
-    /* buttons12 */
-    .buttonsq2 {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-  }
-  @media (max-width: 576px) {
-    .card {
-      width: 100%;
-    }
-    /* botao de enviar */
-    .submit {
-      font-size: 0.8rem;
-    }
-    /* barra de progresso */
-    .progress {
-      height: 10px;
-    }
-    /* porcentagem da barra */
-    .progress-bar {
-      font-size: 0.8rem;
-    }
-    /* buttons12 */
-    .buttonsq2 {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-
-  }
-  /* tomar cuidado com zoom da pagina */
-  @media (max-width: 400px) {
-    .card {
-      width: 100%;
-    }
-    /* botao de enviar */
-    .submit {
-      font-size: 0.8rem;
-    }
-    /* barra de progresso */
-    .progress {
-      height: 10px;
-    }
-    /* porcentagem da barra */
-    .progress-bar {
-      font-size: 0.8rem;
-    }
-    /* buttons12 */
-    .buttonsq2 {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-  }
-
   
+
+
+  /* diminuir o tamanho da fonte de acordo com o tamanho da pagina */
+  @media (max-width: 768px) {
+.about{
+          flex: 1;
+
+}
+
+    .about h1 {
+      font-size: 20px;
+
+    }
+    .question-label{
+      font-size: 15px;
+    }
+    /* footer diminuir */
+    .footer {
+      font-size: 10px;
+      
+    }
+  }
+
+
+
+
 
 
 </style>
 
-<div class="card" style="padding: 50px">
+
+
+<div class="container-q">
+<div class="about" >
   <h1>Questionnaire</h1>
   <form method="post">
     {% csrf_token %}
@@ -299,10 +247,11 @@
         <i class="fas fa-arrow-right"></i>
       </button>
 
-      <input type="submit" value="Submit" id="submit-button" />
+      <input type="submit" value="Submit" id="submit-button" class="save-button"/>
     </div>
     {{ response_id_to_text|json_script:"response-id-to-text" }}
   </form>
+</div>
 </div>
 <footer class="footer" id="footer">
   <div class="container">
@@ -313,6 +262,7 @@
   </div>
 </footer>
 <!-- End Footer -->
+
 
 <!-- importar icones -->
 <script
