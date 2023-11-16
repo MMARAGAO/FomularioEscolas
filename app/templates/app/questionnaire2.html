@@ -37,6 +37,10 @@
     border-radius: 30px;
   }
 
+  .savec {
+    margin-left: 28%;
+
+  }
   /* textos */
   .about h1 {
     font-size: 30px;
@@ -60,7 +64,6 @@
 
   .buttonsq2 {
     display: flex;
-    justify-content: space-between;
     margin-top: 30px;
   }
 
@@ -78,6 +81,8 @@
     cursor: pointer;
     /* fazer card */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    /* espaço a esquerda */
+    margin-right: 50px;
   }
 
   .submit {
@@ -233,10 +238,7 @@
     {% endfor %}
     <div class="buttonsq2">
       <button class="buttonicon" type="button" onclick="prevQuestion()">
-        <i class="fas fa-arrow-left"></i>
-      </button>
-      <button class="submit" type="button" onclick="saveAndContinueLater()">
-        Save and Continue Later
+        <i class="fas fa-arrow-left" style="color: red;"></i>
       </button>
       <button
         class="buttonicon"
@@ -244,8 +246,14 @@
         onclick="nextQuestion()"
         id="next-button"
       >
-        <i class="fas fa-arrow-right"></i>
+        <i class="fas fa-arrow-right" ></i>
       </button>
+      <div class="savec">
+        <button class="submit" type="button" onclick="saveAndContinueLater()">
+        Save and Continue Later
+        </button>
+      </div>
+
 
       <input type="submit" value="Submit" id="submit-button" class="save-button"/>
     </div>
